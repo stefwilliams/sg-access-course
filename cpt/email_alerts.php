@@ -26,7 +26,7 @@ function register_cpt_sgac_email_alert() {
         'hierarchical' => false,
         'description' => 'Email addresses of people who want to know when the next Access / Dance course will be run.',
         'supports' => array( 'title' ),        
-        'public' => false,
+        'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
         'menu_position' => 20,
@@ -39,8 +39,8 @@ function register_cpt_sgac_email_alert() {
         'can_export' => true,
         'rewrite' => false,
         'capability_type' => 'post',
-        'capabilities' => array(
-            'create_posts' => false, )
+        // 'capabilities' => array(
+        //     'create_posts' => true, )
     );
 
     register_post_type( 'sgac_email_alert', $args );
