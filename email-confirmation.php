@@ -46,9 +46,12 @@ $message =
 EML;
 
 
-	$headers = 'From: Samba Galez <noreply@sambagalez.info>\r\n';
+	$headers = "From: Samba Galez <noreply@sambagalez.info> \r\n";
+	$headers .= "Reply-to: noreply@sambagalez.info \r\n";
+
 	add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
-	wp_mail($email, "So you want to join the band?", $message, $headers);
+	$sent_email = wp_mail($email, "So you want to join the band?", $message, $headers);
+
 
 
 //set up accompanying text to send in email
