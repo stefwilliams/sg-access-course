@@ -37,8 +37,9 @@ parse_str($url_parts['query'],$query_vars);
 global $wpdb;
 $md5_sent = $query_vars ['conf'];
 $email = $query_vars ['email'];
+$url_email = urlencode($email);
 
-$hash_string = 'sgac'.$email;
+$hash_string = 'sgac'.$url_email;
 $md5 = md5($hash_string);
 
 if ($md5_sent != $md5) {
@@ -73,7 +74,7 @@ if ($register_email == 'email_exists') {
 	echo "
 	<h3>Email already registered</h3>
 	<p>It looks like that email address has already been registered.</p>
-	<p>If you'd like to remove yourself from the email alerts list, <a href=\"".$url_parts['path']."?unsubscribe=true&email=".$email."&conf=".$md5_sent."\">unsubscribe now</a>.
+	<p>If you'd like to remove yourself from the email alerts list, <a href=\"".$url_parts['path']."?unsubscribe=true&email=".$url_email."&conf=".$md5_sent."\">unsubscribe now</a>.
 	";
 	goto confirm_end;
 }

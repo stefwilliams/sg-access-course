@@ -3,6 +3,7 @@ function send_confirmation(){
 	check_ajax_referer('sgac_confirm', 'nonce'); 
 	
 	$email = $_POST['email'];
+	$url_email = urlencode($email);
 	$interest = $_POST['interest'];
 
 	if ($interest == "drumming") {
@@ -30,11 +31,11 @@ function send_confirmation(){
 	}
 
 	
-	$hash_string = 'sgac'.$email;
+	$hash_string = 'sgac'.$url_email;
 	$conf = md5($hash_string);
 	//setup url string to send in email
-	$query_string = '/?email='.$email.'&interest='.$interest.'&conf='.$conf;
-	$return_address = site_url($path.$query_string);
+	$query_string = '/?email='.$url_email.'&interest='.$interest.'&conf='.$conf;
+	$return_address = home_url($path.$query_string);
 
 $message = 
 <<<EML
